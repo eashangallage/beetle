@@ -21,8 +21,8 @@ def generate_launch_description():
     beetle_gazebo_dir = FindPackageShare(package='beetle_gazebo').find('beetle_gazebo')
     beetle_nav_dir = FindPackageShare(package='beetle_navigation2').find('beetle_navigation2')
     bringup_dir = FindPackageShare(package='nav2_bringup').find('nav2_bringup')
-    default_world_file = os.path.join(beetle_gazebo_dir, 'worlds/empty.world')
-    default_rviz_config_file = os.path.join(beetle_nav_dir, 'rviz/default_view.rviz')
+    default_world_file = os.path.join(beetle_gazebo_dir, 'worlds/track2.world')
+    default_rviz_config_file = os.path.join(beetle_nav_dir, 'rviz/updated.rviz')
     default_nav_to_pose_bt_xml = os.path.join(beetle_nav_dir, 'behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml')
     default_nav_through_poses_bt_xml = os.path.join(beetle_nav_dir, 'behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml')
 
@@ -44,7 +44,8 @@ def generate_launch_description():
     param_substitutions = {
         'use_sim_time': AndSubstitution(use_sim_time, use_simulator),
         'use_odom_tf': NotSubstitution(use_ekf),
-        'yaml_filename': map_yaml_file,
+        'yaml_filename': "/home/eashan/temp/track/track2.yaml",
+        # 'yaml_filename': map_yaml_file,
         'default_nav_to_pose_bt_xml': default_nav_to_pose_bt_xml,
         'default_nav_through_poses_bt_xml': default_nav_through_poses_bt_xml}
 
@@ -92,7 +93,7 @@ def generate_launch_description():
         description='Absolute path to rviz config file')
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(beetle_nav_dir, 'maps', 'map.yaml'),
+        default_value=os.path.join(beetle_nav_dir, 'maps', '/home/eashan/temp/track/track2.yaml'),
         description='Full path to map yaml file to load')
     declare_log_level_cmd = DeclareLaunchArgument(
         'log_level', default_value='info',
